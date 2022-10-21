@@ -1,0 +1,1 @@
+{"name":"Local: weird_subarray","url":"/home/dhirajpatil2346/compitative/codechef/starter 61/weird_subarray.cpp","tests":[{"id":1666194911580,"input":"3\n3\n2 3 1\n3\n2 1 3\n4\n1 2 3 4","output":"5\n6\n10"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/dhirajpatil2346/compitative/codechef/starter 61/weird_subarray.cpp","group":"local","local":true}
