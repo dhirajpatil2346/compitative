@@ -1,0 +1,59 @@
+489C	Given Length and Sum of Digits...dp, greedy, implementation	Submit Add to favourites	1400	 x37766
+520B	Two Buttonsdfs and similar, graphs, greedy, implementation, math, shortest paths	Submit Add to favourites	1400	 x37090
+279B	Booksbinary search, brute force, implementation, two pointers	Submit Add to favourites	1400	 x34351
+479C	Examsgreedy, sortings	Submit Add to favourites	1400	 x23999
+698A	Vacationsdp	Submit Add to favourites	1400	 x22765
+1526B	I Hate 1111dp, math, number theory	Submit Add to favourites	1400	 x21679
+1348B	Phoenix and Beautyconstructive algorithms, data structures, greedy, sortings	Submit Add to favourites	1400	 x21529
+1324D	Pair of Topicsbinary search, data structures, sortings, two pointers	Submit Add to favourites	1400	 x21237
+515C	Drazil and Factorialgreedy, math, sortings	Submit Add to favourites	1400	 x21069
+507B	Amr and Pinsgeometry, math	Submit Add to favourites	1400	 x20760
+1370C	Number Gamegames, math, number theory	Submit Add to favourites	1400	 x20211
+1363B	Subsequence Hateimplementation, strings	Submit Add to favourites	1400	 x19844
+1365C	Rotation Matchingconstructive algorithms, data structures, greedy, implementation	Submit Add to favourites	1400	 x19405
+1374D	Zero Remainder Arraymath, sortings, two pointers	Submit Add to favourites	1400	 x19105
+1195C	Basketball Exercisedp	Submit Add to favourites	1400	 x19040
+1285C	Fadi and LCMbrute force, math, number theory	Submit Add to favourites	1400	 x18186
+1375C	Element Exterminationconstructive algorithms, data structures, greedy	Submit Add to favourites	1400	 x17974
+1350B	Orac and Modelsdp, math, number theory	Submit Add to favourites	1400	 x17565
+514B	Han Solo and Lazer Gunbrute force, data structures, geometry, implementation, math	Submit Add to favourites	1400	 x17375
+414B	Mashmokh and ACMcombinatorics, dp, number theory	Submit Add to favourites	1400	 x17190
+1369C	RationalLeegreedy, math, sortings, two pointers	Submit Add to favourites	1400	 x17084
+1475C	Ball in Berlandcombinatorics, graphs, math	Submit Add to favourites	1400	 x17052
+1380C	Create The Teamsbrute force, dp, greedy, implementation, sortings	Submit Add to favourites	1400	 x16990
+1506D	Epic Transformationconstructive algorithms, data structures, greedy	Submit Add to favourites	1400	 x16809
+401C	Teamconstructive algorithms, greedy, implementation	Submit Add to favourites	1400	 x16763
+1520E	Arranging The Sheepgreedy, math	Submit Add to favourites	1400	 x16225
+1201C	Maximum Medianbinary search, greedy, math, sortings	Submit Add to favourites	1400	 x15733
+1463B	Find The Arraybitmasks, constructive algorithms, greedy	Submit Add to favourites	1400	 x15651
+1355D	Game With Arrayconstructive algorithms, math	Submit Add to favourites	1400	 x15610
+538B	Quasi Binaryconstructive algorithms, dp, greedy, implementation	Submit Add to favourites	1400	 x15545
+1332B	Composite Coloringbrute force, constructive algorithms, greedy, math, number theory	Submit Add to favourites	1400	 x15479
+1362C	Johnny and Another Rating Dropbitmasks, greedy, math	Submit Add to favourites	1400	 x15343
+550B	Preparing Olympiadbitmasks, brute force	Submit Add to favourites	1400	 x15130
+277A	Learning Languagesdfs and similar, dsu	Submit Add to favourites	1400	 x15065
+1393B	Applejack and Storagesconstructive algorithms, data structures, greedy, implementation	Submit Add to favourites	1400	 x14932
+1490E	Accidental Victorybinary search, data structures, greedy	Submit Add to favourites	1400	 x14890
+546C	Soldier and Cardsbrute force, dfs and similar, games	Submit Add to favourites	1400	 x14791
+977D	Divide by three, multiply by twodfs and similar, math, sortings	Submit Add to favourites	1400	 x14735
+289B	Polo the Penguin and Matrixbrute force, dp, implementation, sortings, ternary search	Submit Add to favourites	1400	 x14512
+1245C	Constanze's Machinedp	Submit Add to favourites	1400	 x14393
+1354C1	Simple Polygon Embeddingbinary search, geometry, math, ternary search	Submit Add to favourites	1400	 x14285
+1548A	Web of Liesbrute force, graphs, greedy	Submit Add to favourites	1400	 x14212
+1312C	Adding Powersbitmasks, greedy, implementation, math, number theory, ternary search	Submit Add to favourites	1400	 x14153
+1462D	Add to Neighbour and Removegreedy, math, number theory	Submit Add to favourites	1400	 x14134
+1515C	Phoenix and Towersconstructive algorithms, data structures, greedy	Submit Add to favourites	1400	 x14125
+1303B	National Projectmath	Submit Add to favourites	1400	 x14107
+1320A	Journey Planningdata structures, dp, greedy, math, sortings	Submit Add to favourites	1400	 x13990
+762A	k-th divisormath, number theory	Submit Add to favourites	1400	 x13949
+1535C	Unstable Stringbinary search, dp, greedy, implementation, strings, two pointers	Submit Add to favourites	1400	 x13808
+1519C	Berland Regionalbrute force, data structures, greedy, number theory, sortings	Submit Add to favourites	1400	 x13753
+448B	Suffix Structuresimplementation, strings	Submit Add to favourites	1400	 x13731
+1634B	Fortune Tellingbitmasks, math	Submit Add to favourites	1400	 x13655
+1451C	String Equalitydp, greedy, hashing, implementation, strings	Submit Add to favourites	1400	 x13617
+1167C	News Distributiondfs and similar, dsu, graphs	Submit Add to favourites	1400	 x13535
+1108D	Diverse Garlandconstructive algorithms, dp, greedy	Submit Add to favourites	1400	 x13405
+1605C	Dominant Characterbrute force, greedy, implementation, strings	Submit Add to favourites	1400	 x13293
+1624D	Palindromes Coloringbinary search, greedy, sortings, strings	Submit Add to favourites	1400	 x13193
+1628A	Meximum Arraybinary search, constructive algorithms, greedy, implementation, math, two pointers	Submit Add to favourites	1400	 x13174
+650A	Watchmendata structures, geometry, math	Submit Add to favourites	1400	 x13132

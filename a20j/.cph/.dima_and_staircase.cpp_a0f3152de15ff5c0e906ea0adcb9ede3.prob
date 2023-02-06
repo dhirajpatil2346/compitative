@@ -1,0 +1,1 @@
+{"name":"Local: dima_and_staircase","url":"/home/dhirajpatil2346/compitative/a20j/dima_and_staircase.cpp","tests":[{"id":1666709167075,"input":"5\n1 2 3 6 6\n4\n1 1\n3 1\n1 1\n4 3","output":"1\n3\n4\n6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/dhirajpatil2346/compitative/a20j/dima_and_staircase.cpp","group":"local","local":true}

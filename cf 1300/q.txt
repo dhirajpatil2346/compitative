@@ -1,0 +1,79 @@
+1527A	And Then There Were Kbitmasks	Submit Add to favourites	800	 x27412
+1698A	XOR Mixupbitmasks, brute force	Submit Add to favourites	800	 x22599
+1421A	XORwicebitmasks, greedy, math	Submit Add to favourites	800	 x22333
+1635A	Min Or Sumbitmasks, greedy	Submit Add to favourites	800	 x19093
+1688A	Cirno's Perfect Bitmasks Classroombitmasks, brute force	Submit Add to favourites	800	 x17423
+1566B	MIN-MEX Cutbitmasks, constructive algorithms, dp, greedy	Submit Add to favourites	800	 x17131
+1696A	NIT orz!bitmasks, greedy	Submit Add to favourites	800	 x16188
+1688B	Patchouli's Magical Talismanbitmasks, constructive algorithms, greedy, sortings	Submit Add to favourites	800	 x16029
+1625A	Ancient Civilizationbitmasks, greedy, math	Submit Add to favourites	800	 x15773
+202A	LLPSbinary search, bitmasks, brute force, greedy, implementation, strings	Submit Add to favourites	800	 x12829
+1559A	Mocha and Mathbitmasks, constructive algorithms, math	Submit Add to favourites	900	 x22039
+1494A	ABC Stringbitmasks, brute force, implementation	Submit Add to favourites	900	 x18540
+1699B	Almost Ternary Matrixbitmasks, constructive algorithms, matrices	Submit Add to favourites	900	 x16117
+579A	Raising Bacteriabitmasks	Submit Add to favourites	1000	 x39952
+1567B	MEXor Mixupbitmasks, greedy	Submit Add to favourites	1000	 x18318
+1632B	Roof Constructionbitmasks, constructive algorithms	Submit Add to favourites	1000	 x17628
+1566C	MAX-MEX Cutbitmasks, constructive algorithms, dp, greedy	Submit Add to favourites	1000	 x15094
+467B	Fedor and New Gamebitmasks, brute force, constructive algorithms, implementation	Submit Add to favourites	1100	 x29138
+535B	Tavas and SaDDasbitmasks, brute force, combinatorics, implementation	Submit Add to favourites	1100	 x17869
+1594B	Special Numbersbitmasks, math	Submit Add to favourites	1100	 x15518
+1682B	AND Sortingbitmasks, constructive algorithms, sortings	Submit Add to favourites	1100	 x13949
+1726B	Mainak and Interesting Sequencebitmasks, constructive algorithms, math	Submit Add to favourites	1100	 x12156
+1202A	You Are Given Two Binary Strings...bitmasks, greedy	Submit Add to favourites	1100	 x8038
+1097B	Petr and a Combination Lockbitmasks, brute force, dp	Submit Add to favourites	1200	 x19509
+1420B	Rock and Leverbitmasks, math	Submit Add to favourites	1200	 x18652
+1514B	AND 0, Sum Bigbitmasks, combinatorics, math	Submit Add to favourites	1200	 x17376
+1362B	Johnny and His Hobbiesbitmasks, brute force	Submit Add to favourites	1200	 x16657
+1553C	Penaltybitmasks, brute force, dp, greedy	Submit Add to favourites	1200	 x14663
+743B	Chloe and the sequencebinary search, bitmasks, constructive algorithms, implementation	Submit Add to favourites	1200	 x12336
+1042B	Vitaminsbitmasks, brute force, dp, implementation	Submit Add to favourites	1200	 x12268
+476B	Dreamoon and WiFibitmasks, brute force, combinatorics, dp, math, probabilities	Submit Add to favourites	1300	 x23305
+1498B	Box Fittingbinary search, bitmasks, data structures, greedy	Submit Add to favourites	1300	 x13668
+1547D	Co-growing Sequencebitmasks, constructive algorithms, greedy	Submit Add to favourites	1300	 x13597
+1661B	Getting Zerobitmasks, brute force, dfs and similar, dp, graphs, greedy, shortest paths	Submit Add to favourites	1300	 x13045
+1615B	And It's Non-Zerobitmasks, greedy, math	Submit Add to favourites	1300	 x12422
+96B	Lucky Numbers (easy)binary search, bitmasks, brute force	Submit Add to favourites	1300	 x11345
+1669H	Maximal ANDbitmasks, greedy, math	Submit Add to favourites	1300	 x11219
+1601A	Array Eliminationbitmasks, greedy, math, number theory	Submit Add to favourites	1300	 x10471
+912B	New Year's Evebitmasks, constructive algorithms, number theory	Submit Add to favourites	1300	 x9419
+1659B	Bit Flippingbitmasks, constructive algorithms, greedy, strings	Submit Add to favourites	1300	 x8635
+611B	New Year and Old Propertybitmasks, brute force, implementation	Submit Add to favourites	1300	 x8294
+1152B	Neko Performs Cat Furrier Transformbitmasks, constructive algorithms, dfs and similar, math	Submit Add to favourites	1300	 x8017
+27B	Tournamentbitmasks, brute force, dfs and similar, greedy	Submit Add to favourites	1300	 x4273
+1463B	Find The Arraybitmasks, constructive algorithms, greedy	Submit Add to favourites	1400	 x15310
+1362C	Johnny and Another Rating Dropbitmasks, greedy, math	Submit Add to favourites	1400	 x15150
+550B	Preparing Olympiadbitmasks, brute force	Submit Add to favourites	1400	 x14678
+1312C	Adding Powersbitmasks, greedy, implementation, math, number theory, ternary search	Submit Add to favourites	1400	 x13932
+1634B	Fortune Tellingbitmasks, math	Submit Add to favourites	1400	 x13412
+1095C	Powers Of Twobitmasks, greedy	Submit Add to favourites	1400	 x12553
+1494B	Berland Crosswordbitmasks, brute force, greedy, implementation	Submit Add to favourites	1400	 x12459
+1270C	Make Goodbitmasks, constructive algorithms, math	Submit Add to favourites	1400	 x12066
+1513B	AND Sequencesbitmasks, combinatorics, constructive algorithms, math	Submit Add to favourites	1400	 x11284
+961C	Chessboardbitmasks, brute force, implementation	Submit Add to favourites	1400	 x4919
+1600J	Robot Factorybitmasks, dfs and similar	Submit Add to favourites	1400	 x3104
+1385D	a-Good Stringbitmasks, brute force, divide and conquer, dp, implementation	Submit Add to favourites	1500	 x15430
+1516B	AGAGA XOOORRRbitmasks, brute force, dp, greedy	Submit Add to favourites	1500	 x14713
+1630A	And Matchingbitmasks, constructive algorithms	Submit Add to favourites	1500	 x11800
+1646C	Factorials and Powers of Twobitmasks, brute force, constructive algorithms, dp, math	Submit Add to favourites	1500	 x10221
+1614C	Divan and bitwise operationsbitmasks, combinatorics, constructive algorithms, dp, math	Submit Add to favourites	1500	 x8255
+437B	The Child and Setbitmasks, greedy, implementation, sortings	Submit Add to favourites	1500	 x8001
+1722G	Even-Odd XORbitmasks, constructive algorithms, greedy	Submit Add to favourites	1500	 x6450
+224B	Arraybitmasks, implementation, two pointers	Submit Add to favourites	1500	 x6362
+677C	Vanya and Labelbitmasks, combinatorics, implementation, strings	Submit Add to favourites	1500	 x5839
+1742G	Orraybitmasks, brute force, greedy, math, sortings	Submit Add to favourites	1500	 x5039
+868C	Qualification Roundsbitmasks, brute force, constructive algorithms, dp	Submit Add to favourites	1500	 x4145
+114B	PFAST Inc.bitmasks, brute force, graphs	Submit Add to favourites	1500	 x2901
+1395C	Boboniu and Bit Operationsbitmasks, brute force, dp, greedy	Submit Add to favourites	1600	 x11718
+1567C	Carrying Conundrumbitmasks, combinatorics, dp, math	Submit Add to favourites	1600	 x10347
+1632C	Strange Testbinary search, bitmasks, brute force, dp, math	Submit Add to favourites	1600	 x10014
+1151B	Dima and a Bad XORbitmasks, brute force, constructive algorithms, dp	Submit Add to favourites	1600	 x8744
+1225C	p-binarybitmasks, brute force, math	Submit Add to favourites	1600	 x7874
+913C	Party Lemonadebitmasks, dp, greedy	Submit Add to favourites	1600	 x7174
+1658D1	388535 (Easy Version)bitmasks, math	Submit Add to favourites	1600	 x7148
+1703G	Good Key, Bad Keybitmasks, brute force, dp, greedy, math	Submit Add to favourites	1600	 x6926
+878A	Short Programbitmasks, constructive algorithms	Submit Add to favourites	1600	 x4882
+812B	Sagheer, the Hausmeisterbitmasks, brute force, dp	Submit Add to favourites	1600	 x4736
+244B	Undoubtedly Lucky Numbersbitmasks, brute force, dfs and similar	Submit Add to favourites	1600	 x3766
+243A	The Brand New Functionbitmasks	Submit Add to favourites	1600	 x3437
+291C	Network Mask*special problem, bitmasks, brute force, implementation	Submit Add to favourites	1600	 x1618

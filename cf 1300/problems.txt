@@ -1,0 +1,100 @@
+25A	IQ testbrute force	Submit Add to favourites	1300	 x62071
+4C	Registration Systemdata structures, hashing, implementation	Submit Add to favourites	1300	 x56277
+230B	T-primesbinary search, implementation, math, number theory	Submit Add to favourites	1300	 x52913
+189A	Cut Ribbonbrute force, dp	Submit Add to favourites	1300	 x48693
+451B	Sort the Arrayimplementation, sortings	Submit Add to favourites	1300	 x33980
+459B	Pashmak and Flowerscombinatorics, implementation, sortings	Submit Add to favourites	1300	 x31197
+478B	Random Teamscombinatorics, constructive algorithms, greedy, math	Submit Add to favourites	1300	 x29231
+1294C	Product of Three Numbersgreedy, math, number theory	Submit Add to favourites	1300	 x25178
+1360D	Buying Shovelsmath, number theory	Submit Add to favourites	1300	 x24963
+1328B	K-th Beautiful Stringbinary search, brute force, combinatorics, implementation, math	Submit Add to favourites	1300	 x24440
+476B	Dreamoon and WiFibitmasks, brute force, combinatorics, dp, math, probabilities	Submit Add to favourites	1300	 x23687
+1335D	Anti-Sudokuconstructive algorithms, implementation	Submit Add to favourites	1300	 x23607
+1365B	Trouble Sortconstructive algorithms, implementation	Submit Add to favourites	1300	 x22501
+1372B	Omkar and Last Class of Mathgreedy, math, number theory	Submit Add to favourites	1300	 x22329
+276B	Little Girl and Gamegames, greedy	Submit Add to favourites	1300	 x21850
+450B	Jzzhu and Sequencesimplementation, math	Submit Add to favourites	1300	 x21379
+1538C	Number of Pairsbinary search, data structures, math, two pointers	Submit Add to favourites	1300	 x21352
+1360E	Polygondp, graphs, implementation, shortest paths	Submit Add to favourites	1300	 x21230
+1352D	Alice, Bob and Candiesimplementation	Submit Add to favourites	1300	 x20608
+600B	Queries about less or equal elementsbinary search, data structures, sortings, two pointers	Submit Add to favourites	1300	 x20599
+1401C	Mere Arrayconstructive algorithms, math, number theory, sortings	Submit Add to favourites	1300	 x20405
+1367C	Social Distanceconstructive algorithms, greedy, math	Submit Add to favourites	1300	 x20400
+545D	Queuegreedy, implementation, sortings	Submit Add to favourites	1300	 x19857
+508B	Anton and currency you all knowgreedy, math, strings	Submit Add to favourites	1300	 x19363
+1371C	A Cookie for Yougreedy, implementation, math	Submit Add to favourites	1300	 x18363
+1470A	Strange Birthday Partybinary search, dp, greedy, sortings, two pointers	Submit Add to favourites	1300	 x18300
+1381A1	Prefix Flip (Easy Version)constructive algorithms, data structures, strings	Submit Add to favourites	1300	 x18199
+1341B	Nastya and Doorgreedy, implementation	Submit Add to favourites	1300	 x17728
+1285B	Just Eat It!dp, greedy, implementation	Submit Add to favourites	1300	 x17652
+1521B	Nastia and a Good Arrayconstructive algorithms, math, number theory	Submit Add to favourites	1300	 x17540
+519C	A and B and Team Traininggreedy, implementation, math, number theory	Submit Add to favourites	1300	 x17451
+1366B	Shufflemath, two pointers	Submit Add to favourites	1300	 x17392
+1555C	Coin Rowsbrute force, constructive algorithms, dp, implementation	Submit Add to favourites	1300	 x17107
+1476B	Inflationbinary search, brute force, greedy, math	Submit Add to favourites	1300	 x16999
+1454D	Number into Sequenceconstructive algorithms, math, number theory	Submit Add to favourites	1300	 x16965
+893C	Rumordfs and similar, graphs, greedy	Submit Add to favourites	1300	 x16785
+1364B	Most socially-distanced subsequencegreedy, two pointers	Submit Add to favourites	1300	 x16743
+1373C	Pluses and Minusesmath	Submit Add to favourites	1300	 x16602
+1203C	Common Divisorsimplementation, math	Submit Add to favourites	1300	 x16553
+1037C	Equalizedp, greedy, strings	Submit Add to favourites	1300	 x16301
+1433E	Two Round Dancescombinatorics, math	Submit Add to favourites	1300	 x15991
+1466C	Canine poetrydp, greedy, strings	Submit Add to favourites	1300	 x15688
+1660C	Get an Even Stringdp, greedy, strings	Submit Add to favourites	1300	 x15352
+1560D	Make a Power of Twogreedy, math, strings	Submit Add to favourites	1300	 x15220
+1407B	Big Vovabrute force, greedy, math, number theory	Submit Add to favourites	1300	 x15190
+1420C1	Pokémon Army (easy version)constructive algorithms, dp, greedy	Submit Add to favourites	1300	 x14992
+1418B	Negative Prefixesgreedy, sortings	Submit Add to favourites	1300	 x14901
+1234B2	Social Network (hard version)data structures, implementation	Submit Add to favourites	1300	 x14896
+1692F	3SUMbrute force, math	Submit Add to favourites	1300	 x14850
+1618D	Array and Operationsdp, greedy, math	Submit Add to favourites	1300	 x14783
+1698C	3SUM Closurebrute force, data structures	Submit Add to favourites	1300	 x14530
+617B	Chocolatecombinatorics	Submit Add to favourites	1300	 x14428
+1311C	Perform the Combobrute force	Submit Add to favourites	1300	 x14416
+1249B2	Books Exchange (hard version)dfs and similar, dsu, math	Submit Add to favourites	1300	 x14383
+486B	OR in Matrixgreedy, hashing, implementation	Submit Add to favourites	1300	 x14378
+1627B	Not Sittinggames, greedy, sortings	Submit Add to favourites	1300	 x14367
+570B	Simple Gameconstructive algorithms, games, greedy, implementation, math	Submit Add to favourites	1300	 x14186
+573A	Bear and Pokerimplementation, math, number theory	Submit Add to favourites	1300	 x14167
+1326C	Permutation Partitionscombinatorics, greedy, math	Submit Add to favourites	1300	 x14147
+330B	Road Constructionconstructive algorithms, graphs	Submit Add to favourites	1300	 x14115
+1607D	Blue-Red Permutationgreedy, math, sortings	Submit Add to favourites	1300	 x13989
+1574C	Slay the Dragonbinary search, greedy, sortings, ternary search	Submit Add to favourites	1300	 x13950
+1603A	Di-visible Confusionconstructive algorithms, math, number theory	Submit Add to favourites	1300	 x13901
+1443B	Saving the Citydp, greedy, math, sortings	Submit Add to favourites	1300	 x13874
+1498B	Box Fittingbinary search, bitmasks, data structures, greedy	Submit Add to favourites	1300	 x13870
+1547D	Co-growing Sequencebitmasks, constructive algorithms, greedy	Submit Add to favourites	1300	 x13793
+1260B	Obtain Two Zeroesbinary search, math	Submit Add to favourites	1300	 x13704
+1555B	Two Tablesbrute force	Submit Add to favourites	1300	 x13671
+251A	Points on Linebinary search, combinatorics, two pointers	Submit Add to favourites	1300	 x13642
+1217A	Creating a Characterbinary search, math	Submit Add to favourites	1300	 x13568
+1661B	Getting Zerobitmasks, brute force, dfs and similar, dp, graphs, greedy, shortest paths	Submit Add to favourites	1300	 x13493
+352B	Jeff and Periodsimplementation, sortings	Submit Add to favourites	1300	 x13411
+1249C1	Good Numbers (easy version)brute force, greedy, implementation	Submit Add to favourites	1300	 x13403
+1422B	Nice Matrixgreedy, implementation, math	Submit Add to favourites	1300	 x13185
+1703F	Yet Another Problem About Pairs Satisfying an Inequalitybinary search, data structures, dp, greedy, sortings	Submit Add to favourites	1300	 x13067
+1446A	Knapsackconstructive algorithms, greedy, sortings	Submit Add to favourites	1300	 x13049
+1693A	Directional Increasegreedy	Submit Add to favourites	1300	 x12987
+1176C	Lose it!dp, greedy, implementation	Submit Add to favourites	1300	 x12721
+1157B	Long Numbergreedy	Submit Add to favourites	1300	 x12707
+1615B	And It's Non-Zerobitmasks, greedy, math	Submit Add to favourites	1300	 x12654
+1077C	Good Array	Submit Add to favourites	1300	 x12644
+1291B	Array Sharpeninggreedy, implementation	Submit Add to favourites	1300	 x12629
+1638C	Inversion Graphdata structures, dsu, graphs, math	Submit Add to favourites	1300	 x12616
+862B	Mahmoud and Ehab and the bipartitenessdfs and similar, graphs, trees	Submit Add to favourites	1300	 x12515
+1237B	Balanced Tunneldata structures, sortings, two pointers	Submit Add to favourites	1300	 x12459
+1279B	Verse For Santabinary search, brute force, implementation	Submit Add to favourites	1300	 x12335
+1459B	Move and Turndp, math	Submit Add to favourites	1300	 x12255
+1612C	Chat Banbinary search, math	Submit Add to favourites	1300	 x12242
+588B	Duff in Lovemath	Submit Add to favourites	1300	 x12134
+1617C	Paprika and Permutationbinary search, greedy, math, sortings	Submit Add to favourites	1300	 x12132
+1553B	Reverse Stringbrute force, dp, hashing, implementation, strings	Submit Add to favourites	1300	 x12110
+1307B	Cow and Friendgeometry, greedy, math	Submit Add to favourites	1300	 x12024
+1238B	Kill `Em Allgreedy, sortings	Submit Add to favourites	1300	 x12011
+1667A	Make it Increasingbrute force, greedy, math	Submit Add to favourites	1300	 x12000
+1676F	Longest Strikedata structures, greedy, implementation, sortings, two pointers	Submit Add to favourites	1300	 x11952
+462B	Appleman and Card Gamegreedy	Submit Add to favourites	1300	 x11944
+1178B	WOW Factordp, strings	Submit Add to favourites	1300	 x11941
+962A	Equatorimplementation	Submit Add to favourites	1300	 x11719
+1194C	From S To Timplementation, strings	Submit Add to favourites	1300	 x11666
+707B	Bakerygraphs	Submit Add to favourites	1300	 x11664

@@ -1,0 +1,1 @@
+{"name":"Local: signs","url":"/home/dhirajpatil2346/compitative/a20j/signs.cpp","tests":[{"id":1666626001912,"input":"3 2\n-1 -1 1","output":"3"},{"id":1666626008567,"input":"3 1\n-1 -1 1","output":"1\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/dhirajpatil2346/compitative/a20j/signs.cpp","group":"local","local":true}

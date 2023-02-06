@@ -1,0 +1,1 @@
+{"name":"Local: risk","url":"/home/dhirajpatil2346/compitative/codechef 3 to 4/risk.cpp","tests":[{"id":1671975302826,"input":"3\n4 4\n1001\n0110\n0110\n1001\n2 2\n11\n11\n3 3\n100\n010\n001","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/dhirajpatil2346/compitative/codechef 3 to 4/risk.cpp","group":"local","local":true}

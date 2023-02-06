@@ -1,0 +1,1 @@
+{"name":"Local: social_dist","url":"/home/dhirajpatil2346/compitative/cf 1300/social_dist.cpp","tests":[{"id":1668791084851,"input":"6\n6 1\n100010\n6 2\n000000\n5 1\n10101\n3 1\n001\n2 2\n00\n1 1\n1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/dhirajpatil2346/compitative/cf 1300/social_dist.cpp","group":"local","local":true}
