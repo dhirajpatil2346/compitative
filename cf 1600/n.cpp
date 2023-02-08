@@ -15,8 +15,8 @@ double EPS = 1e-9;
 int INF = 1000000005;
 long long INFF = 1000000000000000005LL;
 double PI = acos(-1);
-int dirx[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
-int diry[8] = {0, 1, -1, 0, -1, 1, -1, 1};
+int dirx[8] = { -1, 0, 0, 1, -1, -1, 1, 1 };
+int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
 
 #ifdef TESTING
 #define DEBUG fprintf(stderr, "====TESTING====\n")
@@ -33,7 +33,7 @@ int diry[8] = {0, 1, -1, 0, -1, 1, -1, 1};
 #define FORD(a, b, c) for (int(a) = (b); (a) >= (c); --(a))
 #define FORSQ(a, b, c) for (int(a) = (b); (a) * (a) <= (c); ++(a))
 #define FORC(a, b, c) for (char(a) = (b); (a) <= (c); ++(a))
-#define FOREACH(a, b) for (auto &(a) : (b))
+#define FOREACH(a, b) for (auto&(a) : (b))
 #define REP(i, n) FOR(i, 0, n)
 #define REPN(i, n) FORN(i, 1, n)
 #define MAX(a, b) a = max(a, b)
@@ -112,21 +112,12 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    vl v(n);
-    for (auto &val : v)
-        cin >> val;
-    SORT(v);
-    LL sum = accumulate(ALL(v), 0ll);
-    bool fault = false;
-    if (sum & 1)
-        fault = true;
-    if (v.back() > sum / 2)
-        fault = true;
-    if (fault)
-        cout << "NO" << endl;
-    else
-        cout << "YES" << endl;
+    map<int,bool> m;
+    for(auto &val:arr)
+    {
+        if(m[val]) continue;
+        answer.push_back(val);
+        m[val]=true;
+    }
     return 0;
 }

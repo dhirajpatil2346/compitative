@@ -112,21 +112,35 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    vl v(n);
-    for (auto &val : v)
-        cin >> val;
-    SORT(v);
-    LL sum = accumulate(ALL(v), 0ll);
-    bool fault = false;
-    if (sum & 1)
-        fault = true;
-    if (v.back() > sum / 2)
-        fault = true;
-    if (fault)
-        cout << "NO" << endl;
-    else
-        cout << "YES" << endl;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        int c = 0;
+        for (int i = 0; i < n; )
+        {
+            if (v[i] != i + 1)
+            {
+                c++;
+                while (i < n && v[i] != i + 1)
+                    i++;
+            }
+            else
+            {
+                while (i < n && v[i] == i + 1)
+                    i++;
+            }
+        }
+        // cout << c << endl;
+        if (is_sorted(ALL(v)))
+            cout << 0 << endl;
+        else
+            cout << min(2, c) << endl;
+    }
     return 0;
 }

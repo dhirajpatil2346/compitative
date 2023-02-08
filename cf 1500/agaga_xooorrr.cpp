@@ -18,15 +18,15 @@ double PI = acos(-1);
 int dirx[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
 int diry[8] = {0, 1, -1, 0, -1, 1, -1, 1};
 
-#ifdef TESTING
-#define DEBUG fprintf(stderr, "====TESTING====\n")
-#define VALUE(x) cerr << "The value of " << #x << " is " << x << endl
-#define debug(...) fprintf(stderr, __VA_ARGS__)
-#else
-#define DEBUG
-#define VALUE(x)
-#define debug(...)
-#endif
+// #ifdef TESTING
+// #define DEBUG fprintf(stderr, "====TESTING====\n")
+// #define VALUE(x) cerr << "The value of " << #x << " is " << x << endl
+// #define debug(...) fprintf(stderr, __VA_ARGS__)
+// #else
+// #define DEBUG
+// #define VALUE(x)
+// #define debug(...)
+// #endif
 
 #define FOR(a, b, c) for (int(a) = (b); (a) < (c); ++(a))
 #define FORN(a, b, c) for (int(a) = (b); (a) <= (c); ++(a))
@@ -112,21 +112,47 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    vl v(n);
-    for (auto &val : v)
-        cin >> val;
-    SORT(v);
-    LL sum = accumulate(ALL(v), 0ll);
-    bool fault = false;
-    if (sum & 1)
-        fault = true;
-    if (v.back() > sum / 2)
-        fault = true;
-    if (fault)
-        cout << "NO" << endl;
-    else
-        cout << "YES" << endl;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        vi bits(64);
+        int n;
+        cin >> n;
+        vl v(n);
+        for (auto &val : v)
+            cin >> val;
+        for (LL i = 0; i < 63; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if ((1ll << i) & v[j])
+                    bits[i]++;
+            }
+        }
+        bool all = true;
+        int key = bits[0];
+        for (int i = 0; i < 64; i++)
+        {
+            if (bits[i] > 0)
+                key = bits[i];
+        }
+        // cout << key << endl;
+        for (int i = 0; i < 64; i++)
+        {
+            if (bits[i])
+                all &= (bits[i] == key);
+        }
+
+        bool clear = true;
+        for (int i = 0; i < 64; i++)
+        {
+            clear &= (bits[i] % 2 == 0);
+        }
+        if (clear || all)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    }
     return 0;
 }

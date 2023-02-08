@@ -107,26 +107,49 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
+int dfs(int sc, int par, vector<vector<int>> &graph, vector<bool> &vis)
+{
+    if (vis[sc])
+        return 0;
+    vis[sc] = true;
+    int a = 0;
+    for (auto &val : graph[sc])
+    {
+        if (val != par && vis[val])
+            a++;
+        if (vis[val])
+            continue;
+        a += dfs(val, sc, graph, vis);
+    }
+    return a;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    vl v(n);
-    for (auto &val : v)
-        cin >> val;
-    SORT(v);
-    LL sum = accumulate(ALL(v), 0ll);
-    bool fault = false;
-    if (sum & 1)
-        fault = true;
-    if (v.back() > sum / 2)
-        fault = true;
-    if (fault)
-        cout << "NO" << endl;
-    else
-        cout << "YES" << endl;
+    vector<vector<int>> v(200005);
+    vector<bool> vis(200005, false);
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < m; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        v[x].pb(y);
+        v[y].pb(x);
+    }
+    int c = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if (vis[i])
+            continue;
+        int k = dfs(i, -1, v, vis);
+        cout << k << endl;
+        if (k == 1)
+            c++;
+    }
+    cout << c << endl;
     return 0;
 }

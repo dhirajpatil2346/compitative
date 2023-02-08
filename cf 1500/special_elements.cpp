@@ -112,21 +112,32 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    vl v(n);
-    for (auto &val : v)
-        cin >> val;
-    SORT(v);
-    LL sum = accumulate(ALL(v), 0ll);
-    bool fault = false;
-    if (sum & 1)
-        fault = true;
-    if (v.back() > sum / 2)
-        fault = true;
-    if (fault)
-        cout << "NO" << endl;
-    else
-        cout << "YES" << endl;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<bool> vis(8000 * 8000 + 1, false);
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        for (int i = 0; i < n; i++)
+        {
+            int c = v[i];
+            for (int j = i + 1; j < n; j++)
+            {
+                c += v[j];
+                vis[c] = true;
+            }
+        }
+        int cnt = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (vis[v[i]])
+                cnt++;
+        }
+        cout << cnt << endl;
+    }
     return 0;
 }

@@ -107,26 +107,57 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
+int ans(int ind, vvi &dp, int move, vi &v)
+{
+    if (ind >= dp.size())
+        return 0;
+    if (dp[ind][move] != -1)
+        return dp[ind][move];
+    int a = INT_MAX;
+    int next = abs(1 - move);
+    if (move == 1)
+    {
+        if (ind == dp.size() - 1)
+        {
+            a = min(a, ans(ind + 1, dp, next, v));
+        }
+        else
+        {
+            a = min(a, ans(ind + 1, dp, next, v));
+            a = min(a, ans(ind + 2, dp, next, v));
+        }
+    }
+    else
+    {
+        if (ind == dp.size() - 1)
+        {
+            a = min(a, ans(ind + 1, dp, next, v) + v[ind]);
+        }
+        else
+        {
+            a = min(a, ans(ind + 1, dp, next, v) + v[ind]);
+            a = min(a, ans(ind + 2, dp, next, v) + v[ind] + v[ind + 1]);
+        }
+    }
+    return dp[ind][move] = a;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    vl v(n);
-    for (auto &val : v)
-        cin >> val;
-    SORT(v);
-    LL sum = accumulate(ALL(v), 0ll);
-    bool fault = false;
-    if (sum & 1)
-        fault = true;
-    if (v.back() > sum / 2)
-        fault = true;
-    if (fault)
-        cout << "NO" << endl;
-    else
-        cout << "YES" << endl;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        vvi dp(n, vi(2, -1));
+        cout << ans(0, dp, 0, v) << endl;
+    }
     return 0;
 }
