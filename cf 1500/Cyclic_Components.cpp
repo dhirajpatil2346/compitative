@@ -107,19 +107,23 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-int dfs(int sc, int par, vector<vector<int>> &graph, vector<bool> &vis)
+int dfs(int sc, int par, vector<vector<int>> &graph, vector<bool> &vis, vector<int> &track)
 {
     if (vis[sc])
         return 0;
+    track.pb(sc);
     vis[sc] = true;
     int a = 0;
     for (auto &val : graph[sc])
     {
-        if (val != par && vis[val])
-            a++;
-        if (vis[val])
+        if (val == par)
             continue;
-        a += dfs(val, sc, graph, vis);
+        if (vis[val])
+        {
+            a++;
+            continue;
+        }
+        a += dfs(val, sc, graph, vis, track);
     }
     return a;
 }
@@ -145,10 +149,25 @@ int main()
     {
         if (vis[i])
             continue;
-        int k = dfs(i, -1, v, vis);
-        cout << k << endl;
-        if (k == 1)
-            c++;
+        vi track;
+        int k = dfs(i, -1, v, vis, track);
+        // cout << k << endl;
+        bool fault = false;
+        if (k >= 1)
+        {
+            for (auto &val : track)
+            {
+                if (v[val].size() != 2)
+                    fault = true;
+            }
+            if (fault)
+            {
+            }
+            else
+            {
+                c++;
+            }
+        }
     }
     cout << c << endl;
     return 0;

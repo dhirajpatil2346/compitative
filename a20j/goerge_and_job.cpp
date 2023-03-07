@@ -106,71 +106,24 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-long long ANS = INT_MIN;
-
-void SUM(vector<int> &ans, long long sum, int ele, int pos, int &k, int &m)
-{
-    // if (pos==0 || pos == 5 || pos==10 || pos==15)
-    // cout << pos << " " << ele << " " << sum << endl;
-    if (ele > k)
-    {
-        return;
-    }
-    if (pos >= ans.size() || ele == k)
-    {
-        if (ele == k)
-        {
-            ANS = max(ANS, sum);
-        }
-        return;
-    }
-    SUM(ans, sum, ele, pos + 1, k, m);
-    SUM(ans, sum + ans[pos], ele + 1, pos + m, k, m);
-}
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, m, k;
-    cin >> n >> m >> k;
-    vi v(n);
-    FOREACH(val, v)
-    {
+    int n, a, b;
+    cin >> n >> a >> b;
+    vl v(n);
+    for (auto &val : v)
         cin >> val;
-    }
-    vi prefix(n);
-    prefix[0] = v[0];
-    FOR(i, 1, n)
+    SORT(v);
+    REVERSE(v);
+    LL sum = 0;
+    for (int i = 0; i < a * b; i++)
     {
-        prefix[i] = prefix[i - 1] + v[i];
+        sum += v[i];
     }
-    vi ans;
-    FOR(i, m, n)
-    {
-        ans.push_back(prefix[i] - prefix[i - m]);
-    }
-    for (auto &val : ans)
-    {
-        cout << val << " ";
-    }
-    cout << endl;
-    SUM(ans, 0, 0, 0, k, m);
-    cout << ANS << endl;
-    for (int i = 0; i < 15; i++)
-    {
-        for (int j = i + 1; j < 15; j++)
-        {
-            for (int k = j + 1; k < 15; k++)
-            {
-                if (953 == (ans[i] + ans[j] + ans[k]))
-                {
-                    cout << i << " " << j << " " << k << endl;
-                }
-            }
-        }
-    }
-
+    cout << sum << endl;
     return 0;
 }
