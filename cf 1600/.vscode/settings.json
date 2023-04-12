@@ -4,6 +4,8 @@
         "iostream": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "string_view": "cpp",
+        "regex": "cpp"
     }
 }

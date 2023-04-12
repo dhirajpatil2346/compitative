@@ -146,11 +146,11 @@ int main()
         {
             for (int p = 0; p < val.second; p++)
             {
-                cout << "left  ->  " << val.first << " ";
+                // cout << "left  ->  " << val.first << " ";
                 int num = val.first;
                 if (right.find(num) == right.end())
                 {
-                    if (rs.size() > 1)
+                    if (rs.size() > 0)
                     {
                         rs.begin()->second -= 1;
                         if (rs.begin()->second == 0)
@@ -173,26 +173,30 @@ int main()
                         right.erase(right.find(num));
                     }
                 }
-                cout << ans << endl;
+                // cout << ans << endl;
             }
         }
+        // for (auto &val : ls)
+        //     cout << val.first << " " << val.second << endl;
+        // cout << endl;
         for (auto &val : right)
         {
             for (int p = 0; p < val.second; p++)
             {
-                cout << "right  -> " << val.first << " ";
+                // cout << "right  -> " << val.first << " ";
                 int num = val.first;
                 if (left.find(num) == left.end())
                 {
-                    if (ls.size() > 1)
+                    if (ls.size() > 0)
                     {
+                        ans++;
                         ls.begin()->second -= 1;
                         if (ls.begin()->second == 0)
                         {
-                            ans++;
+                            // ans++;
                             ls.erase(ls.begin());
-                        }
                     }
+                        }
                     else
                     {
                         rs[num]++;
@@ -207,11 +211,38 @@ int main()
                         left.erase(left.find(num));
                     }
                 }
-                cout << ans << endl;
+                // cout << ans << endl;
             }
         }
-        ans += ls.size();
-        ans += rs.size();
+        // for (auto &val : ls)
+        //     cout << val.first << " " << val.second << endl;
+        // for (auto &val : rs)
+        //     cout << val.first << " " << val.second << endl;
+        if (ls.size() == 0)
+        {
+            int y = 0;
+            for (auto &val : rs)
+                y += val.second;
+            ans += y;
+        }
+        else if (rs.size() == 0)
+        {
+            int y = 0;
+            for (auto &val : ls)
+                y += val.second;
+            ans += y;
+        }
+        else
+        {
+            int y = 0;
+            for (auto &val : ls)
+                y += val.second;
+            ans += y;
+            for (auto &val : rs)
+                y += val.second;
+            ans += y;
+            ans += (y / 2);
+        }
         cout << ans << endl;
     }
     return 0;
