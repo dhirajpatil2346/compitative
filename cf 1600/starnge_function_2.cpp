@@ -108,60 +108,34 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        LL n;
+        cin >> n;
+        LL lc = 1;
+        LL j = 2;
+        LL ans = 0;
+        const LL mod = 1e9 + 7;
+        while (true)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            if (lc > n)
+                break;
+            LL num = n / lc;
+            lc = lcm(lc, j);
+            // cout << lc << endl;
+            num -= n / lc;
+            ans += num * (j);
+            j++;
+            ans %= mod;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        cout << ans << endl;
     }
-    cout << ans << endl;
     return 0;
 }

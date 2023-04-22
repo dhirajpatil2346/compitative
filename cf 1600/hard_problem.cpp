@@ -108,60 +108,90 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+bool is(string &a, string &b)
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    // check if a is bigger than b
+    int i = 0, j = 0;
+    while (i < a.length() && j < b.length())
+    {
+        if (a[i] == b[j])
+        {
+            i++, j++;
+            continue;
+        }
+        if (a[i] < b[j])
+        {
+            return false;
+        }
+        return true;
+    }
+    if (j == b.length())
+        return true;
+    if (i == a.length())
+        return false;
+    return true;
+}
+
+long long f(int ind, vl &vn, vector<string> &v, int prev, vector<vector<LL>> &dp)
+{
+    // cout << ind << endl;
+    if (ind >= v.size())
+        return 0;
+    if (dp[ind][prev] != -1)
+        return dp[ind][prev];
+    LL ret = 1e15;
+    if (prev == 0)
+    {
+        string a = v[ind];
+        string b = v[ind - 1];
+        // cout << prev << " " << is(a, b) << endl;
+        if (is(a, b))
+        {
+            ret = min(ret, f(ind + 1, vn, v, 0, dp));
+        }
+        reverse(ALL(a));
+        if (is(a, b))
+            ret = min(ret, vn[ind] + f(ind + 1, vn, v, 1, dp));
+    }
+    else
+    {
+        string a = v[ind];
+        string b = v[ind - 1];
+        reverse(ALL(b));
+        if (is(a, b))
+        {
+            ret = min(ret, f(ind + 1, vn, v, 0, dp));
+        }
+        reverse(ALL(a));
+        if (is(a, b))
+            ret = min(ret, vn[ind] + f(ind + 1, vn, v, 1, dp));
+    }
+    ret = min((LL)1e15, ret);
+    return dp[ind][prev] = ret;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
-    {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
-        {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
-        }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
-    }
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(NULL);
+    // cout.tie(NULL);
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    vl vn(n);
+    for (auto &val : vn)
+        cin >> val;
+    for (auto &val : v)
+        cin >> val;
+    vector<vector<LL>> dp(n, vl(2, -1));
+    // o .. prev is normal
+    // 1 .. prev is reverrsed
+    LL ans = 1e15;
+    ans = min(ans, f(1, vn, v, 0, dp));
+    ans = min(ans, vn[0] + f(1, vn, v, 1, dp));
+    LL fa = accumulate(ALL(vn), 0ll);
+    if (ans > fa)
+        ans = -1;
     cout << ans << endl;
     return 0;
 }

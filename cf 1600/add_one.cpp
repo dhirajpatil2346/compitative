@@ -107,12 +107,17 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+const LL mod = 1e9 + 7;
+LL f(int a, int op, vvl &dp)
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    // cout << a << " " << op << endl;
+    if (dp[a][op] != -1)
+        return dp[a][op];
+    int t = 10 - a;
+    if (t > op)
+        return 1;
+    int left = op - t;
+    return dp[a][op] = (f(1, left, dp) + f(0, left, dp)) % mod;
 }
 
 int main()
@@ -120,48 +125,21 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    vvl dp(10, vl(2e5 + 10, -1));
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int n, k;
+        cin >> n >> k;
+        string s = to_string(n);
+        LL a = 0;
+        for (auto &val : s)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            a += f(val - '0', k, dp);
+            a %= mod;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        cout << a << endl;
     }
-    cout << ans << endl;
     return 0;
 }

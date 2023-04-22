@@ -108,60 +108,87 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int n;
+    cin >> n;
+    int cnt = 0;
+    vector<int> prime(n + 1, 1);
+    prime[0] = 0, prime[1] = 0;
+    for (int i = 2; i <= n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        if (prime[i] != 1)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            continue;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        for (int j = 2 * i; j <= n; j += i)
+        {
+            prime[j] = 0;
+        }
     }
-    cout << ans << endl;
+    vector<int> v(n + 1, 0);
+    for (int i = 2; i <= n; i++)
+    {
+        if (prime[i] != 1)
+            continue;
+        for (int j = i * 2; j <= n; j += i)
+        {
+            v[j]++;
+        }
+    }
+    int u = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if (v[i] == 2)
+            u++;
+    }
+    cout << u << endl;
+    // vi prime(n + 1, 1);
+    // prime[0] = 0;
+    // prime[1] = 0;
+    // for (int i = 2; i <= n; i++)
+    // {
+    //     if (prime[i] != 1)
+    //         continue;
+    //     for (int j = i * 2; j <= n; j += i)
+    //     {
+    //         prime[j] = 0;
+    //     }
+    // }
+    // for (int i = 1; i <= n; i++)
+    // {
+    //     int val = i;
+    //     int j = 2;
+    //     int c = 0;
+    //     while (j <= sqrt(val))
+    //     {
+    //         // cout << val << " " << j << endl;
+    //         if (val % j)
+    //         {
+    //             j++;
+    //             continue;
+    //         }
+    //         else
+    //         {
+    //             // cout << i << " " << j << endl;
+    //             c++;
+    //             while (val % j == 0)
+    //             {
+    //                 val /= j;
+    //             }
+    //         }
+    //     }
+    //     if (val > 1)
+    //         c++;
+    //     if (c == 2)
+    //     {
+    //         // cout << i << endl;
+    //         cnt++;
+    //     }
+    // }
+    // cout << cnt << endl;
     return 0;
 }

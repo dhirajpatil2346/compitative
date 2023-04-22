@@ -108,60 +108,75 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        string s1, s2;
+        cin >> s1 >> s2;
+        int n = s1.length(), m = s2.length();
+        set<pair<char, int>> st;
+        for (int i = 1; i < n; i++)
+            st.insert({s1[i], i});
+        bool got = false, im = false;
+        int i = 0, op = 0;
+        for (i = 0; i < min(n, m); i++)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            if (op == 2 || im || got)
+                break;
+            if (s1[i] < s2[i])
+            {
+                got = true;
+                break;
+            }
+            for (auto &val : st)
+            {
+                if (val.second <= i)
+                {
+                    st.erase(st.find(val));
+                    continue;
+                }
+                if (val.first > s2[i])
+                {
+                    im = true;
+                }
+                else if (val.first == s2[i])
+                {
+                    op++;
+                    char curr = s1[i];
+                    s1[val.second] = curr;
+                    s1[i] =
+                        val.first;
+                    st.insert({curr, val.second});
+                }
+                else
+                {
+                    op++;
+                    char curr = s1[i];
+                    s1[i] = val.first;
+                    s1[val.second] = curr;
+                    st.insert({curr, val.second});
+                    got = true;
+                }
+                break;
+            }
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        if (im)
+            cout << "---" << endl;
+        else if (got)
+            cout << s1 << endl;
+        else if (i == n)
+            cout << s1 << endl;
+        else
+            cout << "---" << endl;
     }
-    cout << ans << endl;
     return 0;
 }
+/*
+
+*/

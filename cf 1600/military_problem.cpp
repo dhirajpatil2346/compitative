@@ -108,60 +108,64 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+int dfs(int sc, vector<bool> &vis, vvi &v, vi &sons, vi &df, vi &pos)
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    if (vis[sc])
+        return 0;
+    // cout << sc << endl;
+    vis[sc] = true;
+    df.pb(sc);
+    pos[sc] = df.size() - 1;
+    int c = 1;
+    for (auto &val : v[sc])
+    {
+        if (vis[val])
+            continue;
+        c += dfs(val, vis, v, sons, df, pos);
+    }
+    return sons[sc] = c;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(NULL);
+    // cout.tie(NULL);
+    int n, q;
+    cin >> n >> q;
+    vvi v(n + 1);
+    for (int i = 1; i < n; i++)
+    {
+        int y = i + 1;
+        int x;
+        cin >> x;
+        v[x].pb(y);
+    }
+    // for (int i = 1; i <= n; i++)
+    // {
+    //     cout << i << " --> ";
+    //     for (auto &val : v[i])
+    //         cout << val << " ";
+    //     cout << endl;
+    // }
+    vi df;
+    vi sons(n + 1, 0), pos(n + 1, -1);
+    vector<bool> vis(n + 1, false);
+    dfs(1, vis, v, sons, df, pos);
+    // for (int i = 1; i <= n; i++)
+    // {
+    //     cout << i << " " << sons[i] << endl;
+    // }
+    while (q--)
     {
         int x, y;
         cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        if (sons[x] < y)
+            cout << -1 << endl;
+        else
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            cout << df[pos[x] + y - 1] << endl;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
     }
-    cout << ans << endl;
     return 0;
 }

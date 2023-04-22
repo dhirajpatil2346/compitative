@@ -108,60 +108,56 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int n, m;
+    cin >> n >> m;
+    vector<vector<pair<int, LL>>> v(n + 1);
+    for (int i = 0; i < m; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
+        int a, b, c;
+        cin >> a >> b >> c;
+        v[a].pb({b, c});
+        v[b].pb({a, c});
     }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
+    vl dist(n + 1, 1e11);
+    vi par(n + 1, -1);
+    int a = 1, b;
+    // cin >> a >> b;
+    priority_queue<pair<LL, int>, vector<pair<LL, int>>, greater<pair<LL, LL>>> q;
+    q.push({0, a});
+    dist[a] = 0;
+    par[a] = 0;
+    while (!q.empty())
     {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        auto tp = q.top();
+        int sc = tp.second;
+        q.pop();
+        for (auto &val : v[sc])
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            if (val.second + dist[sc] < dist[val.first])
+            {
+                par[val.first] = sc;
+                dist[val.first] = val.second + dist[sc];
+                q.push({dist[val.first], val.first});
+            }
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
     }
-    cout << ans << endl;
+    if (par[n] == -1)
+        cout << -1 << endl;
+    b = n;
+    // cout << b << " ";
+    while (b != 0)
+    {
+        cout << b << " ";
+        b = par[b];
+    }
     return 0;
 }
+/*
+60 * (5/18) * 9
+
+*/

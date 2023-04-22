@@ -107,61 +107,58 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+bool solve()
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    map<char, int> m;
+    for (int i = 0; i < 26; i++)
+    {
+        int x;
+        cin >> x;
+        m[char('A' + i)] = x;
+    }
+    // for (auto &val : m)
+    //     cout << val.first << " " << val.second << endl;
+    int n;
+    cin >> n;
+    set<string> st;
+    for (int i = 0; i < n; i++)
+    {
+        string s;
+        cin >> s;
+        // cout << s << endl;
+        string ans = "";
+        for (auto &val : s)
+        {
+            int num = m[val];
+            string snum = to_string(num);
+            // cout << snum << endl;
+            ans += snum;
+        }
+        st.insert(ans);
+    }
+    // for (auto &val : st)
+    //     cout << val << " ";
+    // cout << endl;
+    return (n != st.size());
 }
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        bool g = solve();
+        if (g)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            cout << "Case #" << i << ": YES" << endl;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        else
+        {
+            cout << "Case #" << i << ": NO" << endl;
+        }
     }
-    cout << ans << endl;
     return 0;
 }

@@ -108,60 +108,92 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int n;
+        cin >> n;
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        set<int> left;
+        for (int i = 1; i <= n; i++)
+            left.insert(i);
+        vi assign(n, -1);
+        for (int i = 0; i < n; i++)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            if (left.find(v[i]) == left.end())
+            {
+                continue;
+            }
+            else
+            {
+                left.erase(left.find(v[i]));
+                assign[i] = v[i];
+            }
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        // set<int> fault;
+        // for (auto &val : left)
+        // {
+        //     if (assign[val - 1] == -1)
+        //         fault.insert(val);
+        // }
+        // for (int i = 0; i < n; i++)
+        // {
+        //     if (assign[i] == -1)
+        //     {
+
+        //     }
+        // }
+        for (int i = 0; i < n; i++)
+        {
+            if (assign[i] == -1)
+            {
+                if (*left.begin() == i + 1)
+                {
+                    assign[i] = *prev(left.end());
+                    left.erase(prev(left.end()));
+                }
+                else
+                {
+                    assign[i] = *left.begin();
+                    left.erase(left.begin());
+                }
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (assign[i] == i + 1)
+            {
+                int pos = 0;
+                for (int j = 0; j < n; j++)
+                {
+                    if (assign[j] == v[i])
+                    {
+                        pos = j;
+                    }
+                    auto temp = assign[i];
+                    assign[i] = assign[pos];
+                    assign[pos] = temp;
+                }
+            }
+        }
+        int c = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (v[i] == assign[i])
+                c++;
+        }
+        cout << c << endl;
+        for (auto &val : assign)
+            cout << val << " ";
+        cout << endl;
     }
-    cout << ans << endl;
     return 0;
 }

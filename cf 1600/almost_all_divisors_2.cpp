@@ -108,11 +108,15 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+void dfs(int ind, vl &facts, LL curr, vl &fact)
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    if (ind == fact.size())
+    {
+        facts.pb(curr);
+        return;
+    }
+    dfs(ind + 1, facts, curr, fact);
+    dfs(ind + 1, facts, curr * fact[ind], fact);
 }
 
 int main()
@@ -120,48 +124,62 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int n;
+        cin >> n;
+        vl v(n);
+        for (auto &val : v)
+            cin >> val;
+        set<LL> s;
+        for (auto &val : v)
+            s.insert(val);
+        SORT(v);
+        LL tar = v.back() * v.front();
+        for (auto &val : v)
+            tar = lcm(tar, val);
+        vl fact;
+        LL y = tar;
+        LL i = 2;
+        while (i <= sqrt(y))
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            while (y % i == 0)
+            {
+                y /= i;
+                fact.pb(i);
+            }
+            i++;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        if (y > 1)
+            fact.pb(y);
+        vl facts;
+        dfs(0, facts, 1, fact);
+        set<LL> ns;
+        for (auto &val : facts)
+            ns.insert(val);
+        SORT(facts);
+        bool f = false;
+        for (auto &val : facts)
+        {
+            if (f)
+                break;
+            if (val == tar || val == 1)
+                continue;
+            if (s.find(val) == s.end())
+                f = true;
+        }
+        for (auto &val : v)
+        {
+            if (f)
+                break;
+            if (ns.find(val) == ns.end())
+                f = true;
+        }
+        if (f)
+            cout << -1 << endl;
+        cout << tar << endl;
     }
-    cout << ans << endl;
     return 0;
 }

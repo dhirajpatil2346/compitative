@@ -108,60 +108,58 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int n;
+        cin >> n;
+        vl v(n);
+        for (auto &val : v)
+            cin >> val;
+        SORT(v);
+        if (v.size() == 1)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            cout << v[0] * v[0] << endl;
+            continue;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        set<int> s;
+        for (auto &val : v)
+            s.insert(val);
+        bool f = false;
+        for (auto &val : v)
+        {
+            if (f)
+                break;
+            for (LL i = 2; i <= sqrt(val); i++)
+            {
+                if (val % i)
+                    continue;
+                if (s.find(val / i) == s.end() || s.find(val / (val / i)) == s.end())
+                {
+                    f = true;
+                }
+            }
+        }
+        if (f)
+            cout << -1 << endl;
+        else
+        {
+            LL l = v[0];
+            for (auto &val : v)
+                l = lcm(l, val);
+            if (s.find(l) != s.end())
+            {
+                cout << l * v[0] << endl;
+            }
+            else
+                cout << l << endl;
+        }
     }
-    cout << ans << endl;
     return 0;
 }

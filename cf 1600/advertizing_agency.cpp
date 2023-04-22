@@ -108,11 +108,27 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+LL mod = 1e9 + 7;
+
+LL calcfac(LL n)
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    LL ret = 1;
+    for (int i = 1; i <= n; i++)
+    {
+        ret *= i;
+        ret %= mod;
+    }
+    return ret;
+}
+
+LL mmi(LL a, LL m)
+{
+    if (m == 0)
+        return 1;
+    LL res = mmi(a, m / 2);
+    if (m & 1)
+        return ((((res % mod) * (res % mod)) % mod) * (a % mod)) % mod;
+    return (((res % mod) * (res % mod)) % mod);
 }
 
 int main()
@@ -120,48 +136,26 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
+        int n, k;
+        cin >> n >> k;
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        SORT(v);
+        int req = v[n - k];
+        int N = count(ALL(v), req);
+        int c = 0;
+        for (int i = n - k; i < n; i++)
+            if (req == v[i])
+                c++;
+        // cout << N << " " << c << endl;
+        LL num = calcfac(N), dnom = mmi(calcfac(c), mod - 2), dn = mmi(calcfac(N - c), mod - 2);
+        // cout << num << " " << dnom << endl;
+        cout << (((num * dnom) % mod) * dn) % mod << endl;
     }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
-        {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
-        }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
-    }
-    cout << ans << endl;
     return 0;
 }

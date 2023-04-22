@@ -108,60 +108,55 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int n;
+        cin >> n;
+        vl v(n);
+        for (auto &val : v)
+            cin >> val;
+        SORT(v);
+        LL ans = v[0] * v[n - 1];
+        vl facts;
+        for (int i = 2; i <= sqrt(ans); i++)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            if (ans % i == 0)
+            {
+                facts.pb(i);
+                facts.pb(ans / i);
+            }
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        // for (auto &val : facts)
+        //     cout << val << " ";
+        // cout << endl;
+        SORT(facts);
+        bool nf = false;
+        set<LL> s;
+        for (auto &val : facts)
+            s.insert(val);
+        for (auto &val : v)
+        {
+            int ind = lower_bound(ALL(facts), val) - facts.begin();
+            if (ind == facts.size() || facts[ind] != val)
+                nf = true;
+        }
+        for (auto &val : facts)
+        {
+            int ind = lower_bound(ALL(v), val) - v.begin();
+            if (ind == v.size() || v[ind] != val)
+                nf = true;
+        }
+        if (nf)
+            cout << -1 << endl;
+        else
+            cout << ans << endl;
     }
-    cout << ans << endl;
     return 0;
 }

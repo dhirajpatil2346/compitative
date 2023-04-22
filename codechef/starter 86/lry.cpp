@@ -108,60 +108,80 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        LL n, y;
+        cin >> n >> y;
+        string s = "";
+        LL Y = y;
+        while (Y)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            s.pb('a' + Y % 2);
+            Y /= 2;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        vl v(n);
+        for (auto &val : v)
+            cin >> val;
+        bool g = false;
+        int pos = 29;
+        // bool g = false;
+        for (LL i = 0; i < 30; i++)
+        {
+            bool g1 = false, g2 = false;
+            for (auto &val : v)
+            {
+                if ((1 << i) & val)
+                    g1 = true;
+                else
+                    g2 = true;
+            }
+            if (g1 && g2)
+            {
+                if (i <= pos)
+                {
+                    pos = i;
+                }
+                if (!(y & (1 << i)))
+                    g = true;
+            }
+        }
+        // cout << pos << endl;
+        int P = s.length() - 1;
+        for (int i = pos; i < s.length(); i++)
+        {
+            if (s[i] == '1')
+            {
+                P = i;
+                break;
+            }
+        }
+        if (g)
+        {
+            cout << y << endl;
+            continue;
+        }
+        // cout << P << endl;
+        s[P] = '0';
+        for (int i = 0; i < P; i++)
+        {
+            s[i] = '1';
+        }
+        LL num = 0;
+        for (LL i = 0; i < s.length(); i++)
+        {
+            if (s[i] == '1')
+            {
+                num |= (1 << i);
+            }
+        }
+        cout << num << endl;
     }
-    cout << ans << endl;
     return 0;
 }

@@ -108,60 +108,71 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int n;
+        cin >> n;
+        vl v(n);
+        for (auto &val : v)
+            cin >> val;
+        int pos = 0;
+        LL c1 = abs(v[0] - v[1]);
+        for (int i = 0; i < n; i++)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            if (i != n - 1)
+            {
+                LL cc1 = 0, cc2 = 0;
+                cc1 = abs(v[i] - v[i - 1]);
+                cc2 = abs(v[i] - v[i + 1]);
+                if (c1 >= cc1 && c1 >= cc2)
+                {
+                    pos = i;
+                    c1 = max(cc1, cc2);
+                }
+            }
+            else
+            {
+                LL cc1 = abs(v[i] - v[i - 1]);
+                if (c1 >= cc1)
+                {
+                    pos = i;
+                    c1 = cc1;
+                }
+            }
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        vector<int> alice;
+        for (int i = 0; i < n; i++)
+        {
+            LL cc1 = 0, cc2 = 0;
+            if ((i - 1) >= 0)
+                cc1 = abs(v[i] - v[i - 1]);
+            if ((i + 1) < n)
+                cc2 = abs(v[i] - v[i + 1]);
+            if (max(cc1, cc2) == c1)
+                alice.pb(i);
+        }
+        // for (auto &val : alice)
+        //     cout << val << " ";
+        // cout << endl;
+        LL ans = 0;
+        for (auto &val : alice)
+        {
+            LL cc1 = 0, cc2 = 0;
+            int i = val;
+            if ((i - 1) >= 0)
+                cc1 = abs(v[i] - v[i - 1]);
+            if ((i + 1) < n)
+                cc2 = abs(v[i] - v[i + 1]);
+            ans = max(ans, max(cc1, cc2));
+        }
+        cout << ans << endl;
     }
-    cout << ans << endl;
     return 0;
 }

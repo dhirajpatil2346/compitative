@@ -108,59 +108,44 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
-{
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
+    int n;
+    cin >> n;
+    vi v(n);
+    for (auto &val : v)
+        cin >> val;
+    vector<int> dpr(n, 1), dpl(n, 1);
+    for (int i = n - 2; i >= 0; i--)
+    {
+        if (v[i] < v[i + 1])
+        {
+            dpr[i] = dpr[i + 1] + 1;
+        }
+    }
+    for (int i = 1; i < n; i++)
+    {
+        if (v[i] > v[i - 1])
+        {
+            dpl[i] = dpl[i - 1] + 1;
+        }
+    }
+    int ans = 1;
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
-        {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
-        }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        int curr = dpl[i];
+        if (i + 1 < n)
+            curr++;
+        if (i + 2 < n && (v[i + 2] - v[i]) > 1)
+            curr += dpr[i + 2];
+        ans = max(ans, curr);
+        curr = 1;
+        if (i + 1 < n)
+            curr += dpr[i + 1];
+        ans = max(ans, curr);
     }
     cout << ans << endl;
     return 0;

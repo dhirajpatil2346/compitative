@@ -108,11 +108,22 @@ inline void OPEN(string s)
 
 // end of Sektor_jr template v2.0.3 (BETA)
 
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+int f(int ind, vi &v, int last, int x, vector<vector<vector<int>>> &dp)
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
+    if (ind == v.size())
+        return 0;
+    if (dp[ind][last][x] != -1)
+        return dp[ind][last][x];
+    int ret = 1e3;
+    if (v[ind] >= last)
+    {
+        ret = min(ret, f(ind + 1, v, v[ind], x, dp));
+    }
+    if (x >= last && v[ind] > x)
+    {
+        ret = min(ret, 1 + f(ind + 1, v, x, v[ind], dp));
+    }
+    return dp[ind][last][x] = ret;
 }
 
 int main()
@@ -120,48 +131,29 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
+        int n, x;
+        cin >> n >> x;
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        int maxi = *max_element(ALL(v));
+        maxi = max(maxi, x);
+        vector<vector<vector<int>>> dp(n, vvi(maxi + 1, vi(maxi + 1, -1)));
+        LL z = f(0, v, 0, x, dp);
+        if (z == 1e3)
+            z = -1;
+        cout << z << endl;
     }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
-        {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
-        }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
-    }
-    cout << ans << endl;
     return 0;
 }
+/*
+1 3 5 4
+1 2 5 4
+1 2 3 4
+
+
+*/

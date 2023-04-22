@@ -107,61 +107,67 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-
-bool cmp(pair<LL, LL> &p1, pair<LL, LL> &p2)
+int solve()
 {
-    if (p1.second != p2.second)
-        return p1.second < p2.second;
-    return p1.first <= p2.first;
-}
+    LL m, r, n;
+    cin >> m >> r >> n;
+    vl v(n);
+    for (auto &val : v)
+        cin >> val;
+    // SORT(v);
+    if (v[0] > r || (v.back() + r) < m)
+        return -1;
+    vi ans;
+    bool fault = false;
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (v[i] + 2 * r < v[i + 1])
+        {
+            fault = true;
+            break;
+        }
+    }
+    if (fault)
+    {
+        return -1;
+    }
+    else
+    {
+        int l = 0;
 
+        set<int> s;
+        while (true)
+        {
+            int ind = upper_bound(ALL(v), l + r) - v.begin();
+            ind--;
+            l = v[ind] + r;
+            s.insert(ind);
+
+            if (l >= m)
+                break;
+        }
+        return (int)s.size();
+    }
+    return 0;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n, k;
-    cin >> n >> k;
-    vector<pair<LL, LL>> vp(n);
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        vp[i] = {x, y};
-    }
-    // cout << endl;
-    sort(ALL(vp), cmp);
-    // for (auto &val : vp)
-    //     cout << val.first << " " << val.second << endl;
-    LL sum = 0;
-    LL ans = 0;
-    priority_queue<LL, vl, greater<LL>> s;
-    for (int i = n - 1, j = 0; j < k; j++, i--)
-    {
-        s.push(vp[i].first);
-        sum += vp[i].first;
-        ans = max(ans, sum * vp[i].second);
-    }
-    ans = max(ans, sum * vp[n - k].second);
-    // cout << s.size() << endl;
-    // cout << sum << endl;
-    for (auto &val : vp)
-        ans = max(ans, val.first * val.second);
-    for (int i = n - k - 1; i >= 0; i--)
-    {
-        // cout << i << " " << sum << " --> " << s.top() << endl;
-        LL curr = vp[i].first;
-        if (curr > s.top())
+        int s = solve();
+        if (s == -1)
         {
-            sum -= s.top();
-            s.pop();
-            s.push(vp[i].first);
-            sum += curr;
+            cout << "Case #" << i << ": IMPOSSIBLE" << endl;
         }
-        LL cval = vp[i].second * sum;
-        // cout << i << " " << sum << " " << cval << endl;
-        ans = max(cval, ans);
+        else
+        {
+            cout << "Case #" << i << ": " << s << endl;
+        }
     }
-    cout << ans << endl;
     return 0;
 }
