@@ -107,53 +107,34 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
+
+int f(int ind, vvi &son, int curr, vvi &graph, vvi &dp)
 {
-    if (rind == t.length())
+    if (ind == graph.size() - 1)
     {
-        return true;
-    }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
+        for (int i = 0; i < graph[0].size(); i++)
         {
-            track[rind].pb(ind);
+            if (curr ^ graph[ind][i] > 0)
+            {
+                return curr ^ graph[ind][i];
+                break;
+            }
         }
     }
-    return dp[ind][rind] = ret;
+    for (int j = 0; j = graph[0].size(); j++)
+    {
+        
+    }
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
-    {
-        SORT(val);
-    }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
-    {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
-    }
-    cout << ans << endl;
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> son(n, vi(m));
 
     return 0;
 }
-/*
-*/

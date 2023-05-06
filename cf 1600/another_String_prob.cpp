@@ -107,53 +107,76 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
-{
-    if (rind == t.length())
-    {
-        return true;
-    }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
-        {
-            track[rind].pb(ind);
-        }
-    }
-    return dp[ind][rind] = ret;
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
+    int k;
+    string s;
+    cin >> k >> s;
     int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    if (k == 0)
     {
-        SORT(val);
+        LL sum = 0;
+        int i = 0;
+        while (i < n)
+        {
+            LL l = 0;
+            if (s[i] == '1')
+            {
+                i++;
+                continue;
+            }
+            else
+            {
+                while (i < n && s[i] == '0')
+                {
+                    l++;
+                    i++;
+                }
+                sum += (l * (l + 1)) / 2;
+            }
+        }
+        cout << sum << endl;
+        return 0;
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
+    vl left(n), right(n);
+    LL z = 0;
+    for (LL i = 0; i < n; i++)
     {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
+        left[i] = z;
+        if (s[i] == '1')
+            z = 0;
+        else
+            z++;
     }
-    cout << ans << endl;
-
+    z = 0;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        right[i] = z;
+        if (s[i] == '1')
+            z = 0;
+        else
+            z++;
+    }
+    vl track;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '1')
+            track.pb(i);
+    }
+    LL sum = 0;
+    for (int i = 0; i < track.size(); i++)
+    {
+        int pos = i + k - 1;
+        if (pos >= track.size())
+            break;
+        // cout << i << " " << pos << endl;
+        // cout << left[track[i]] << " " << right[track[pos]] << endl;
+        sum += ((left[track[i]] + 1) * (right[track[pos]] + 1));
+    }
+    cout << sum << endl;
     return 0;
 }
-/*
-*/

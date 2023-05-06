@@ -106,54 +106,137 @@ inline void OPEN(string s)
 #endif
 }
 
-// end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
+vi prime;
+
+bool isP(LL n)
 {
-    if (rind == t.length())
+    if (n == 1)
+        return false;
+    for (LL i = 0; i < prime.size() && prime[i] <= sqrt(n); i++)
     {
-        return true;
+        if (n % prime[i] == 0)
+            return false;
     }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
+    return true;
+}
+
+// end of Sektor_jr template v2.0.3 (BETA)
+
+void sieve()
+{
+    LL n = sqrt(1e9) + 10;
+    vector<bool> primes(n, true);
+    primes[0] = false, primes[1] = false;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
+        if (primes[i] == false)
+            continue;
+        // cout << i << endl;
+        for (int j = 2 * i; j < n; j += i)
         {
-            track[rind].pb(ind);
+            // cout << i << " " << j << endl;
+            primes[j] = false;
         }
     }
-    return dp[ind][rind] = ret;
+    for (int i = 2; i < n; i++)
+    {
+        if (primes[i] == true)
+        {
+            // cout << i << endl;
+            prime.pb(i);
+        }
+    }
+    return;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    sieve();
+    // cout << prime.size() << endl;
+    for (int i = 0; i < 10; i++)
     {
-        SORT(val);
+        // cout << prime[i] << " ";
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
+    // cout << endl;
+    int t;
+    cin >> t;
+    while (t--)
     {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
+        LL a, b, k;
+        cin >> a >> b >> k;
+        LL g = __gcd(a, b);
+        LL A = a, B = b;
+        if (isP(a) && isP(b))
+        {
+            if (k == 2)
+            {
+                cout << "YES" << endl;
+            }
+            else
+            {
+                cout << "NO" << endl;
+            }
+            continue;
+        }
+        else if (a == b && k == 1)
+        {
+            cout << "NO" << endl;
+            continue;
+        }
+        LL minmoves = 0;
+        if (g != a)
+            minmoves++;
+        if (g != b)
+            minmoves++;
+        // a /= g, b /= g;
+        LL maxmoves = 0;
+        LL i = 0;
+        while (i < prime.size() && prime[i] <= sqrt(a))
+        {
+            if (a % prime[i])
+            {
+            }
+            else
+            {
+                while (a % prime[i] == 0)
+                {
+                    maxmoves++;
+                    a /= prime[i];
+                }
+            }
+            i++;
+        }
+        if (a > 1)
+            maxmoves++;
+        i = 0;
+        a = A, b = B;
+        while (i<prime.size()&&prime[i] <= sqrt(b))
+        {
+            if (b % prime[i])
+            {
+            }
+            else
+            {
+                while (b % prime[i] == 0)
+                {
+                    maxmoves++;
+                    b /= prime[i];
+                }
+            }
+            i++;
+        }
+        if (b > 1)
+            maxmoves++;
+        // cout << minmoves << " " << maxmoves << endl;
+        if (k < minmoves || k > maxmoves)
+            cout << "NO" << endl;
+        else if (k >= minmoves && k <= maxmoves)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
     }
-    cout << ans << endl;
-
     return 0;
 }
-/*
-*/

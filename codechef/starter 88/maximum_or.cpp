@@ -107,53 +107,70 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
+
+string bin(LL a)
 {
-    if (rind == t.length())
+    string s = "";
+    while (a != 0)
     {
-        return true;
+        s += ('0' + a % 2);
+        a /= 2;
     }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
-        {
-            track[rind].pb(ind);
-        }
-    }
-    return dp[ind][rind] = ret;
+    reverse(ALL(s));
+    return s;
+}
+LL mmi(LL a, LL p)
+{
+    if (p == 0)
+        return 1;
+    LL res = mmi(a, p / 2);
+    res = res * res;
+    if (p & 1)
+        return (res * a);
+    return res;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        SORT(val);
+        LL a, b, c;
+        cin >> a >> b >> c;
+        string s1 = bin(a), s2 = bin(b);
+        if (s1.length() < s2.length())
+        {
+            int diff = abs((int)s1.length() - (int)s2.length());
+            string j = "";
+            while (diff--)
+            {
+                j += "0";
+            }
+            j += s1;
+            s1 = j;
+        }
+        else if (s1.length() > s2.length())
+        {
+            int diff = abs((int)s1.length() - (int)s2.length());
+            string j = "";
+            while (diff--)
+            {
+                j += "0";
+            }
+            j += s2;
+            s2 = j;
+        }
+        LL pos = 0;
+        for (int i = 0; i < s1.length(); i++)
+        {
+            if (s1[i] != s2[i])
+                pos++;
+        }
+        LL ans = mmi(2, pos);
+        cout << ans << endl;
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
-    {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
-    }
-    cout << ans << endl;
-
     return 0;
 }
-/*
-*/

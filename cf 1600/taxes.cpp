@@ -107,53 +107,77 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
+
+LL f(LL n)
 {
-    if (rind == t.length())
+    LL f = 1;
+    for (LL i = 2; i <= sqrt(n); i++)
     {
-        return true;
-    }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
+        if (n % i == 0)
         {
-            track[rind].pb(ind);
+            f = max(i, f);
+            f = max(f, n / i);
         }
     }
-    return dp[ind][rind] = ret;
+    return f;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    LL n;
+    cin >> n;
+    if (f(n) == 1)
     {
-        SORT(val);
+        cout << 1 << endl;
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
+    else
     {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
+        LL ans = n;
+        for (int i = 2; i <= sqrt(n); i++)
+        {
+            if (n % i == 0)
+            {
+                ans = min(ans, i * f(n / i));
+                LL f2 = n / i;
+                ans = min(ans, f2 * f(n / f2));
+            }
+        }
+        cout << ans << endl;
     }
-    cout << ans << endl;
-
     return 0;
 }
 /*
+*/
+/*
+36 
+19 17
+
+38
+19 19
+
+40
+23 17
+
+42
+19 23
+
+50
+47 3
+
+52
+43 8
+47 5
+.
+
+.
+
+
+77
+11 * 7
+37 17 23
+
+
 */

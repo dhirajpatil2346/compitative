@@ -107,53 +107,101 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
+
+map<int, int> dfs(int sc, vector<bool> &vis, vvi &v, int &k, LL &ans, int par)
 {
-    if (rind == t.length())
+    map<int, int> m;
+    if (vis[sc])
+        return m;
+    vis[sc] = true;
+    vector<map<int, int>> vm;
+    for (auto &val : v[sc])
     {
-        return true;
+        if (val == par)
+            continue;
+        map<int, int> mp = dfs(val, vis, v, k, ans, sc);
+        if (mp.size() == 0)
+            continue;
+        vm.pb(mp);
     }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
+    // cout << "sc is " << sc << endl;
+    // for (auto &val : vm)
+    // {
+    //     for (auto &valu : val)
+    //     {
+    //         // cout << valu.first << " " << valu.second << endl;
+    //     }
+    // }
+    // cout << endl;
+    LL b = ans;
+    for (auto &val : vm)
     {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
+        if (val.find(k) == val.end())
+            continue;
+        ans += val[k];
+    }
+    // cout << "ans ini is : " << ans - b << endl;
+    int i = 0;
+    // cout << "size is : " << vm.size() << endl;
+    LL p = 0;
+    // vector<map<int, int>> vp;
+    map<int, int> curr;
+    if (vm.size() >= 1)
+        curr = vm[0];
+    for (int i = 1; i < vm.size(); i++)
+    {
+        for (auto &val : vm[i])
         {
-            track[rind].pb(ind);
+            int r = k - val.first;
+            if (r <= 0)
+            {
+                break;
+            }
+            else if (curr.find(r) == curr.end())
+            {
+            }
+            else
+            {
+                ans += curr[r] * val.second;
+            }
+            // curr[val.first] += val.second;
+        }
+        for (auto &val : vm[i])
+            curr[val.first] += val.second;
+    }
+    ans += p;
+    map<int, int> r;
+    r[1]++;
+    for (auto &val : vm)
+    {
+        for (auto &valu : val)
+        {
+            if (valu.first >= k)
+                continue;
+            r[valu.first + 1] += valu.second;
         }
     }
-    return dp[ind][rind] = ret;
+    return r;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    int n, k;
+    cin >> n >> k;
+    vvi v(n + 1);
+    for (int i = 0; i < n - 1; i++)
     {
-        SORT(val);
+        int x, y;
+        cin >> x >> y;
+        v[x].pb(y);
+        v[y].pb(x);
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
-    {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
-    }
+    LL ans = 0;
+    vector<bool> vis(n + 1, false);
+    dfs(1, vis, v, k, ans, -1);
     cout << ans << endl;
-
     return 0;
 }
-/*
-*/

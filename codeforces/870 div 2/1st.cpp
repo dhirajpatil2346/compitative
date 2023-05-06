@@ -107,53 +107,52 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
-{
-    if (rind == t.length())
-    {
-        return true;
-    }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
-        {
-            track[rind].pb(ind);
-        }
-    }
-    return dp[ind][rind] = ret;
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        SORT(val);
+        int n;
+        cin >> n;
+        vi v(n);
+        for (auto &val : v)
+            cin >> val;
+        SORT(v);
+        if (v[0] == n)
+        {
+            cout << -1 << endl;
+            continue;
+        }
+        deque<int> q;
+        int mc = 0;
+        for (auto &val : v)
+            q.push_back(val);
+        while (q.size())
+        {
+            int f = q.front();
+            if (mc >= f)
+            {
+                q.pop_front();
+                continue;
+            }
+            f -= mc;
+            while (!q.empty())
+            {
+                if (f <= 0)
+                    break;
+                mc++;
+                q.pop_back();
+                f--;
+            }
+            if (q.size())
+                q.pop_front();
+        }
+        cout << mc << endl;
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
-    {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
-    }
-    cout << ans << endl;
-
     return 0;
 }
-/*
-*/

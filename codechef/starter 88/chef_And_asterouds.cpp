@@ -107,53 +107,52 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
+
+const LL mod = 1e9 + 7;
+
+LL mmi(LL a, LL p)
 {
-    if (rind == t.length())
-    {
-        return true;
-    }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
-        {
-            track[rind].pb(ind);
-        }
-    }
-    return dp[ind][rind] = ret;
+    if (p == 0)
+        return 1;
+    LL res = mmi(a, p / 2);
+    res = res * res;
+    res %= mod;
+    if (p & 1)
+        return (res * a) % mod;
+    return res;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    int N = 1e5 + 10;
+    vl fact(N);
+    fact[0] = 1, fact[1] = 1;
+    for (int i = 2; i < fact.size(); i++)
     {
-        SORT(val);
+        fact[i] = (i * fact[i - 1]) % mod;
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
+    int n;
+    cin >> n;
+    map<LL, LL> m;
+    for (int i = 0; i < n; i++)
     {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
+        int x, y;
+        cin >> x >> y;
+        m[x]++;
     }
+    LL ways = fact[n];
+    LL possible = 1;
+    // need to solve
+    for (auto &val : m)
+    {
+        possible *= fact[val.second];
+        possible %= mod;
+    }
+    // cout << ways << " " << possible << endl;
+    LL ans = (possible * mmi(ways, mod - 2)) % mod;
     cout << ans << endl;
-
     return 0;
 }
-/*
-*/

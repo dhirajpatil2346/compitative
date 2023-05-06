@@ -107,53 +107,109 @@ inline void OPEN(string s)
 }
 
 // end of Sektor_jr template v2.0.3 (BETA)
-bool f(int ind, int rind, string &s, string &t, vector<vector<int>> &track, vector<vector<int>> &dp)
-{
-    if (rind == t.length())
-    {
-        return true;
-    }
-    if (ind > s.length())
-        return false;
-    if (rind > t.length())
-        return false;
-    if (dp[ind][rind] != -1)
-        return dp[ind][rind];
-    bool ret = f(ind + 1, rind, s, t, track, dp);
-    if (s[ind] == t[rind])
-    {
-        ret |= f(ind + 1, rind + 1, s, t, track, dp);
-        if (ret)
-        {
-            track[rind].pb(ind);
-        }
-    }
-    return dp[ind][rind] = ret;
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    string s, t;
-    cin >> s >> t;
-    int n = s.length();
-    vector<vector<int>> dp(n + 10, vi(n + 10, -1));
-    vector<vector<int>> track(n + 5);
-    f(0, 0, s, t, track, dp);
-    for (auto &val : track)
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    for (auto &val : v)
+        cin >> val;
+    map<char, int> m;
+    m[v[0][0]] = 0;
+    int cnt = 1;
+    bool fault = false;
+    for (int i = 1; i < n; i++)
     {
-        SORT(val);
+        if (fault)
+            break;
+        int a = 0, b = 0;
+        while (a < v[i - 1].length() && b < v[i].length())
+        {
+            bool got = false;
+            if (v[i - 1][a] == v[i][b])
+            {
+                a++;
+                b++;
+                continue;
+            }
+            else
+            {
+                if (m.find(v[i - 1][a]) != m.end() && m.find(v[i][b]) != m.end())
+                {
+                    if (m[v[i - 1][a]] < m[v[i][b]])
+                    {
+                        got = true;
+                    }
+                    else
+                    {
+                        fault = true;
+                        got = true;
+                    }
+                }
+                else if (m.find(v[i - 1][a]) == m.end() && m.find(v[i][b]) == m.end())
+                {
+                    m[v[i - 1][a]] = cnt;
+                    cnt++;
+                    m[v[i][b]] = cnt;
+                    cnt++;
+                }
+                else if (m.find(v[i - 1][a]) != m.end())
+                {
+                    m[v[i][b]] = cnt;
+                    cnt++;
+                }
+                else
+                {
+                    m[v[i - 1][a]] = cnt;
+                    cnt++;
+                }
+            }
+            if (fault)
+                break;
+            if (got)
+                break;
+            if (b == v[i].length())
+            {
+                fault = true;
+                break;
+            }
+            else
+            {
+                if (m.find(v[i][b]) == m.end())
+                {
+                    m[v[i][b]] = cnt;
+                    cnt++;
+                }
+                break;
+            }
+        }
     }
-    int ans = track[0].back();
-    ans = max(ans, n - 1 - track[t.length() - 1].front());
-    for (int i = 0; i < t.length() - 1; i++)
+    if (fault)
+        cout << "Impossible" << endl;
+    else
     {
-        ans = max(ans, abs(track[i].front() - track[i + 1].back()) - 1);
+        vector<pair<int, char>> vp;
+        for (auto &val : m)
+        {
+            vp.pb({val.second, val.first});
+        }
+        SORT(vp);
+        string s = "";
+        for (auto &val : vp)
+        {
+            s += val.second;
+            cout << val.second;
+        }
+        for (char c = 'a'; c <= 'z'; c++)
+        {
+            if (s.find(c) == -1)
+                cout << c;
+        }
+        cout << endl;
     }
-    cout << ans << endl;
-
     return 0;
 }
-/*
-*/
