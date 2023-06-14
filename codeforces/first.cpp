@@ -46,24 +46,14 @@ void solve()
 {
     int n;
     cin >> n;
-    // (n / c) >= 3
-    if (n & 1)
+    vector<int> curr;
+    int flux = 0;
+    for (int i = 0; i < n; i++)
     {
-        int c = 1;
-        n--;
-        for (int i = 1;; i++)
+        if (flux == 0)
         {
-            int a = i, b = n - i;
-            if (__gcd(a, b) == 1 && (a != b && b != c && a != c))
-            {
-                cout << a << " " << b << " " << 1 << endl;
-                return;
-            }
+            // curr.push_back(v[i]);
         }
-    }
-    else
-    {
-        cout << n / 2 << " " << n / 2 - 1 << " " << 1 << endl;
     }
 }
 int main()
@@ -90,5 +80,31 @@ int main()
 1 5 7
 */
 /*
-2 4 5 
+2 4 5
+*/
+/*
+5 3 2 4 1
+1-> 1 5 3 2 4
+2 -> 1 2 5 3 4
+
+3 -> 2 1 3 4 5
+
+
+*/
+/*
+2 -> 1 1
+alice 2
+bob won
+
+3-> 1 1 1
+alice 3
+bob won or
+alice  2 1
+bob won
+4-> 1 1 1 1
+alice 2 1 1
+bob 2 2
+aluce 4
+bob won
+
 */
