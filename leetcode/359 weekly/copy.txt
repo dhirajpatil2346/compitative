@@ -1,0 +1,27 @@
+class Solution
+{
+public:
+    int func(int index, vector<pair<int, pair<int, int>>> &vector_of_pairs, vector<int> &init, vector<int> &dp_array)
+    {
+        if (index >= vector_of_pairs.size())
+            return 0;
+        if (dp_array[index] != -1)
+            return dp_array[index];
+        int ret_val= f(index + 1, vector_of_pairs, init, dp_array);
+        int nextindex = upper_bound(init.begin(), init.end(), vector_of_pairs[index].second.first) - init.begin();
+        ret_val= max(ret, vector_of_pairs[index].second.second + f(nextindex, vector_of_pairs, init, dp_array));
+        return dp_array[index] = ret;
+    }
+    int maximizeTheProfit(int n, vector<vector<int>> &norm_array)
+    {
+        vector<pair<int, pair<int, int>>> vector_of_pairs;
+        for (auto &val : norm_array)
+            vector_of_pairs.push_back({val[0], {val[1], val[2]}});
+        sort(vector_of_pairs.begin(), vector_of_pairs.end());
+        vector<int> init;
+        for (auto &val : vector_of_pairs)
+            init.push_back(val.first);
+        vector<int> dp_array(vector_of_pairs.size(), -1);
+        return func(0, vector_of_pairs, init, dp_array);
+    }
+};

@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "coroutine": "cpp",
+        "map": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "set": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "limits": "cpp",
+        "optional": "cpp",
+        "system_error": "cpp",
+        "regex": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp",
+        "random": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp"
+    }
+}

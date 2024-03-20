@@ -1,0 +1,71 @@
+#define LL long long
+#define int long long
+const LL mod = 1e9 + 9;
+
+LL bin(LL a, LL p)
+{
+    if (p == 0)
+        return 1;
+    LL res = bin(a, p / 2ll);
+    res = (res * res) % mod;
+    if (p & 1ll)
+        res = (res * a) % mod;
+    return res;
+}
+
+LL mmi(LL a)
+{
+    return bin(a, mod - 2);
+}
+
+int getMaxOccurrences(string s, int minLength, int maxLength, int maxUnique)
+{
+    int n = s.size();
+    const int p = 31;
+    const int m = 1e9 + 9;
+    vector<long long> p_pow(n);
+    p_pow[0] = 1;
+    for (int i = 1; i < n; i++)
+        p_pow[i] = (p_pow[i - 1] * p) % m;
+
+    vector<long long> h(n + 1, 0);
+    for (int i = 0; i < n; i++)
+        h[i + 1] = (h[i] + (s[i] - 'a' + 1) * p_pow[i]) % m;
+    int cnt = 0;
+    int mx = 0;
+    for (int l = minLength; l <= maxLength; l++)
+    {
+        int curr_h = 0;
+        map<char, int> mp;
+        map<int, int> curr_cnt;
+        for (int i = 0; i < l; i++)
+        {
+            mp[s[i]]++;
+            int c = s[i] - 'a';
+            c = (c * p_pow[i]) % m;
+            curr_h = (curr_h + c) % m;
+        }
+        if (mp.size() <= maxUnique)
+        {
+            curr_cnt[curr_h]++;
+        }
+        for (int i = 0, j = l; j < n; j++, i++)
+        {
+            mp[s[i]]--;
+            mp[s[j]]++;
+            if (mp[s[i]] == 0)
+                mp.erase(s[i]);
+            curr_h = (curr_h * mmi(31)) % m;
+            int c = s[j] - 'a';
+            c = (c * p_pow[l - 1]) % m;
+            curr_h = (curr_h + c) % m;
+            if (mp.size() <= maxUnique)
+            {
+                curr_cnt[curr_h]++;
+            }
+        }
+        for (auto &val : curr_cnt)
+            mx = max(mx, val.second);
+    }
+    return mx;
+}

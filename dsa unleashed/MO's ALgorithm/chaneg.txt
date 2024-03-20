@@ -1,0 +1,20 @@
+whire (r < R)
+        {
+            // take R back
+            if (m[v[R]] == v[R])
+                c--;
+            m[v[R]]--;
+            if (m[v[R]] == v[R])
+                c++;
+            R--;
+        }
+        if (r > R)
+        {
+            // take R forward
+            if (m[v[R]] == v[R])
+                c--;
+            m[v[R]]--;
+            if (m[v[R]] == v[R])
+                c++;
+            R--;
+        }
